@@ -13,9 +13,17 @@ const App = () => {
     {}, //blank curly braces mean no attributes for div such as id, class, etc
     [
       React.createElement("h1", { id: "my-brand" }, "Adopt Me!"),
-      React.createElement(Pet, { name: 'Luna', animal: 'Dog', breed: 'husky'}), //passing props to Pet
-      React.createElement(Pet, { name: 'Tommy', animal: 'Cat', breed: 'catlike'}),
-      React.createElement(Pet, { name: 'Noorie', animal: 'Dog', breed: 'pomerian'}),
+      React.createElement(Pet, { name: "Luna", animal: "Dog", breed: "husky" }), //passing props to Pet
+      React.createElement(Pet, {
+        name: "Tommy",
+        animal: "Cat",
+        breed: "catlike",
+      }),
+      React.createElement(Pet, {
+        name: "Noorie",
+        animal: "Dog",
+        breed: "pomerian",
+      }),
     ]
   );
 };
