@@ -1,10 +1,6 @@
-//Pet component returning array of Pets
-const Pet = (props) =>
-  React.createElement("div", {}, [
-    React.createElement("h2", {}, props.name),
-    React.createElement("h3", {}, props.animal),
-    React.createElement("h3", {}, props.breed),
-  ]);
+import React from "react";
+import ReactDOM from "react-dom";
+import Pet from "./Pet";
 
 // below App is a React component being created
 const App = () => {
