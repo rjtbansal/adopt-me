@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Pet from "./Pet";
+import useBreedList from "./useBreedList";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
@@ -9,7 +10,7 @@ const SearchParams = () => {
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
-  const breeds = []; //will get from API later
+  const [breeds] = useBreedList(animal); //using our custom hook. We are not using 2nd paramter `status` so thats why ignored it in hook call
 
   useEffect(() => {
     requestPets();
