@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 const Details = (props) => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +18,7 @@ const Details = (props) => {
 
   const { animal, breed, city, state, description, name } = petDetails;
 
-  return (
+  return loading ? <h2>Loading...</h2> : (
     <div className="details">
       <div>
         <h1>{name}</h1>
