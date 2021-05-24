@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
 
 const Details = (props) => {
   const [loading, setLoading] = useState(true);
@@ -19,7 +20,7 @@ const Details = (props) => {
   }, [props.match.params.id]);
 
   const { animal, breed, city, state, description, name, images } = petDetails;
-
+  //throw new Error; //uncomment to actually trigger the error by our ErrorBoundary
   return loading ? (
     <h2>Loading...</h2>
   ) : (
@@ -37,5 +38,12 @@ const Details = (props) => {
   );
 };
 
+const DetailsWithRouter = withRouter(Details);
 //we need withRouter HOC because react-router-dom needs to pass us our match.params.id
-export default withRouter(Details);
+export default function DetailsWithErrorBoundary() {
+  return (
+    <ErrorBoundary>
+      <DetailsWithRouter />
+    </ErrorBoundary>
+  );
+}

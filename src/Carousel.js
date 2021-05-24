@@ -9,6 +9,7 @@ const Carousel = ({ images }) => {
     setActive(+event.target.dataset.index);
   };
 
+  // throw new Error;  //uncomment this to actually see the ErrorBoundary trigger
   return (
     <div className="carousel">
       <img src={images[active]} alt="animal" />
