@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { withRouter } from "react-router";
+import Carousel from "./Carousel";
+
 const Details = (props) => {
   const [loading, setLoading] = useState(true);
   const [petDetails, setPetDetails] = useState({});
@@ -16,10 +18,13 @@ const Details = (props) => {
     fetchDetails();
   }, [props.match.params.id]);
 
-  const { animal, breed, city, state, description, name } = petDetails;
+  const { animal, breed, city, state, description, name, images } = petDetails;
 
-  return loading ? <h2>Loading...</h2> : (
+  return loading ? (
+    <h2>Loading...</h2>
+  ) : (
     <div className="details">
+      <Carousel images={images} />
       <div>
         <h1>{name}</h1>
         <h2>
