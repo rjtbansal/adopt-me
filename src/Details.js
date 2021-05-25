@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
+import ThemeContext from "./ThemeContext";
 
 const Details = (props) => {
   const [loading, setLoading] = useState(true);
   const [petDetails, setPetDetails] = useState({});
-
+  const [theme] = useContext(ThemeContext);
   useEffect(() => {
     async function fetchDetails() {
       const res = await fetch(
@@ -30,8 +31,9 @@ const Details = (props) => {
         <h1>{name}</h1>
         <h2>
           {animal} - {breed} - {city}, {state}
-        </h2>
-        <button>Adopt {name}</button>
+          </h2>
+          {/* setting backgroundColor via our theme context color */}
+        <button style={{backgroundColor: theme}}>Adopt {name}</button>
         <p>{description}</p>
       </div>
     </div>
