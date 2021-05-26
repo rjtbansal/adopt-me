@@ -1,29 +1,35 @@
-import { StrictMode } from "react";
+import { StrictMode, useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
+import ThemeContext from "./ThemeContext";
 
 // below App is a React component being created
 const App = () => {
+  const theme = useState("darkblue");
+  console.log('theme: ', theme);
+  //passing are theme as value to ThemeContext provider which is our context
   return (
-    <div>
-      <Router>
-        <header>
-          <Link to="/">
-            <h1>Adopt Me!</h1>
-          </Link>
-        </header>
-        <Switch>
-          <Route path="/details/:id">
-            <Details />
-          </Route>
-          <Route path="/">
-            <SearchParams />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <ThemeContext.Provider value={theme}>
+      <div>
+        <Router>
+          <header>
+            <Link to="/">
+              <h1>Adopt Me!</h1>
+            </Link>
+          </header>
+          <Switch>
+            <Route path="/details/:id">
+              <Details />
+            </Route>
+            <Route path="/">
+              <SearchParams />
+            </Route>
+          </Switch>
+        </Router>
+      </div>
+    </ThemeContext.Provider>
   );
 };
 //below we are rendering our component to the DOM. First argument takes our component and 2nd argument contains

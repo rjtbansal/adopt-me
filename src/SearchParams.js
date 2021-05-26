@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react"; //useContext will let us grab and use current contextValue
+import ThemeContext from './ThemeContext'; //importing our context
 import Results from "./Results";
 import useBreedList from "./useBreedList";
 
@@ -10,6 +11,7 @@ const SearchParams = () => {
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal); //using our custom hook. We are not using 2nd paramter `status` so thats why ignored it in hook call
+  const [theme, setTheme] = useContext(ThemeContext); //grabbing theme value from our ThemeContext
 
   useEffect(() => {
     requestPets();
@@ -72,7 +74,20 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <button>Submit</button>
+        <label htmlFor="theme">
+          Theme
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            onBlur={(e) => setTheme(e.target.value)}
+          >
+            <option value="darkblue">Dark Blue</option>
+            <option value="peru">Peru</option>
+            <option value="chartreuse">Chartreuse</option>
+            <option value="mediumorchid">Medium Orchid</option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme }}>Submit</button>
       </form>
       <Results pets={pets} />
     </div>
