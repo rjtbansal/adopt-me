@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"; //useContext will let us grab and use current contextValue
-import ThemeContext from './ThemeContext'; //importing our context
+import ThemeContext from "./ThemeContext"; //importing our context
 import Results from "./Results";
 import useBreedList from "./useBreedList";
 
@@ -26,8 +26,9 @@ const SearchParams = () => {
   }
 
   return (
-    <div className="search-params">
+    <div className="my-0 mx-auto w-11/12">
       <form
+        className="p-10 mb-10 rounded-lg bg-gray-200 shadow-lg flex flex-col justify-center items-center divide-y divide-gray-900"
         onSubmit={(e) => {
           e.preventDefault();
           requestPets();
