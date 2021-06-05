@@ -3,3 +3,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*Through components we can specify our own classnames that our tailwind will recognize and postcss be able to process it*/
+@layer components {
+  .search-label {
+    margin-bottom: 15px;
+    padding-top: 15px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-control {
+    padding: 8px 15px;
+    width: 300px;
+    border-radius: 5px;
+  }
+}
