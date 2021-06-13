@@ -21,7 +21,7 @@ export default function useBreedList(animal: Animal): [string[], Status] {
       requestBreedList();
     }
 
-    async function requestBreedList(): void {
+    async function requestBreedList() {
       setBreedList([]); //refresh breed list as new breed list is being fetched
       setStatus("loading");
 

@@ -13,7 +13,9 @@ const Carousel: FunctionComponent<IProps> = ({ images }) => {
     if (!(event.target instanceof HTMLElement)) {
       return;
     }
-    setActive(+event.target.dataset.index);
+    if (event.target.dataset.index) {
+      setActive(+event.target.dataset.index);
+    }
   };
 
   // throw new Error;  //uncomment this to actually see the ErrorBoundary trigger

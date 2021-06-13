@@ -8,6 +8,7 @@ interface IProps {
   images: string[];
   location: string;
   id: number;
+  //color?: string; //color is an optional property. We use ? to tell TS
 }
 //Pet component returning array of Pets
 const Pet: FunctionComponent<IProps> = ({

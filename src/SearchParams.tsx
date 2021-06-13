@@ -1,15 +1,16 @@
-import { useState, useEffect, useContext } from "react"; //useContext will let us grab and use current contextValue
+import { useState, useEffect, useContext, FunctionComponent } from "react"; //useContext will let us grab and use current contextValue
 import ThemeContext from './ThemeContext'; //importing our context
 import Results from "./Results";
 import useBreedList from "./useBreedList";
+import { Animal, Pet, PetAPIResponse } from "./APIResponseTypes";
 
-const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
+const ANIMALS: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 
-const SearchParams = () => {
+const SearchParams: FunctionComponent = () => {
   const [location, setLocation] = useState("Seattle, WA");
-  const [animal, setAnimal] = useState("");
+  const [animal, setAnimal] = useState("" as Animal);
   const [breed, setBreed] = useState("");
-  const [pets, setPets] = useState([]);
+  const [pets, setPets] = useState([] as Pet[]);
   const [breeds] = useBreedList(animal); //using our custom hook. We are not using 2nd paramter `status` so thats why ignored it in hook call
   const [theme, setTheme] = useContext(ThemeContext); //grabbing theme value from our ThemeContext
 
@@ -21,7 +22,7 @@ const SearchParams = () => {
     const res = await fetch(
       `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
-    const json = await res.json();
+    const json = (await res.json()) as PetAPIResponse;
     setPets(json.pets);
   }
 
@@ -47,8 +48,8 @@ const SearchParams = () => {
           <select
             id="animal"
             value={animal}
-            onChange={(event) => setAnimal(event.target.value)}
-            onBlur={(event) => setAnimal(event.target.value)}
+            onChange={(event) => setAnimal(event.target.value as Animal)}
+            onBlur={(event) => setAnimal(event.target.value as Animal)}
           >
             <option />
             {ANIMALS.map((animal) => (

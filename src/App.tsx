@@ -8,7 +8,7 @@ import ThemeContext from "./ThemeContext";
 // below App is a React component being created
 const App = () => {
   const theme = useState("darkblue");
-  console.log('theme: ', theme);
+  console.log("theme: ", theme);
   //passing are theme as value to ThemeContext provider which is our context
   return (
     <ThemeContext.Provider value={theme}>
