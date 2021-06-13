@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, FunctionComponent, MouseEvent, ReactNode } from "react";
 
-const Carousel = ({ images }) => {
+interface IProps {
+  images: string[];
+}
+
+const Carousel: FunctionComponent<IProps> = ({ images }) => {
   const [active, setActive] = useState(0);
 
-  const handleIndexClick = (event) => {
+  const handleIndexClick = (event: MouseEvent<HTMLElement>): void => {
     // reading our index property from img data-index. we skip data- and thats why its .dataset.index and not .dataset.data-index as one might imagine
     //below we get a string so by using + it converts to a number
-    setActive(+event.target.dataset.index);
+    if (!(event.target instanceof HTMLElement)) {
+      return;
+    }
+    if (event.target.dataset.index) {
+      setActive(+event.target.dataset.index);
+    }
   };
 
   // throw new Error;  //uncomment this to actually see the ErrorBoundary trigger
