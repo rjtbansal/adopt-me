@@ -1,17 +1,19 @@
-import { useState, useEffect, useContext } from "react"; //useContext will let us grab and use current contextValue
-import ThemeContext from './ThemeContext'; //importing our context
+import { useState, useEffect } from "react"; //useContext will let us grab and use current contextValue
+import { useSelector } from "react-redux";
 import Results from "./Results";
 import useBreedList from "./useBreedList";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
-  const [location, setLocation] = useState("Seattle, WA");
-  const [animal, setAnimal] = useState("");
-  const [breed, setBreed] = useState("");
+  //useSelector allows us to select particular state in state tree. It takes as 1st arg a selector function
+  const animal = useSelector(state => state.animal); 
+  const location = useSelector(state => state.location);
+  const theme = useSelector(state => state.theme);
+  const breed = useSelector(state => state.breed);
+
   const [pets, setPets] = useState([]);
   const [breeds] = useBreedList(animal); //using our custom hook. We are not using 2nd paramter `status` so thats why ignored it in hook call
-  const [theme, setTheme] = useContext(ThemeContext); //grabbing theme value from our ThemeContext
 
   useEffect(() => {
     requestPets();

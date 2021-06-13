@@ -3,15 +3,13 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
-import ThemeContext from "./ThemeContext";
-
+import store from './store';
+import { Provider } from "react-redux";
 // below App is a React component being created
 const App = () => {
-  const theme = useState("darkblue");
-  console.log('theme: ', theme);
-  //passing are theme as value to ThemeContext provider which is our context
-  return (
-    <ThemeContext.Provider value={theme}>
+  //passing our redux store below
+return (
+    <Provider store={store}>
       <div>
         <Router>
           <header>
@@ -28,8 +26,8 @@ const App = () => {
             </Route>
           </Switch>
         </Router>
-      </div>
-    </ThemeContext.Provider>
+    </div>
+    </Provider>
   );
 };
 //below we are rendering our component to the DOM. First argument takes our component and 2nd argument contains
