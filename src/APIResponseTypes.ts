@@ -10,7 +10,7 @@ export type Animal = "dog" | "cat" | "bird" | "reptile" | "rabbit";
 //const lion: Animal = 'lion';
 
 /**below is our interface called Pet in which we expect following fields and their type
- * 
+ *
  * Type vs Interface: Its mostly recommended to use Interface whenever and wherever we can. Only in very particular situations as such as above we could use a type
  */
 export interface Pet {
@@ -25,9 +25,14 @@ export interface Pet {
 }
 
 export interface PetAPIResponse {
-  numberOfResults: number,
-  startIndex: number
-  endIndex: number
-  hasNext: boolean
-  pets: Pet[]
+  numberOfResults: number;
+  startIndex: number;
+  endIndex: number;
+  hasNext: boolean;
+  pets: Pet[];
+}
+
+export interface BreedListAPIResponse {
+  animal: Animal;
+  breeds: string[];
 }
