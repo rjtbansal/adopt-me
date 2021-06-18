@@ -12,13 +12,14 @@ const Carousel = ({ images }) => {
   // throw new Error;  //uncomment this to actually see the ErrorBoundary trigger
   return (
     <div className="carousel">
-      <img src={images[active]} alt="animal" />
+      <img src={images[active]} data-testid="hero" alt="animal" />
       <div className="carousel-smaller">
         {images.map((photo, index) => (
           <img
             key={photo}
             src={photo}
             data-index={index}
+            data-testid={`thumbnail${index}`}
             onClick={handleIndexClick}
             className={index === active ? "active" : ""}
             alt="animal thumbnail"
