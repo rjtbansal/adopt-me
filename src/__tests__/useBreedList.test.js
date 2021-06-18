@@ -1,4 +1,4 @@
-import { expect, jest, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 import { render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 import useBreedList from "../useBreedList";
@@ -16,11 +16,13 @@ test("gives an empty array with no animal", async () => {
 test("gives back breeds with an animal", async () => {
   const breeds = ["Havanese", "Bichon Frise", "Poodle", "Corgie"];
 
-  fetch.mockResponseOnce(JSON.stringify({
-    animal: "dog",
-    breeds
-  }));
-
+  fetch.mockResponseOnce(
+    JSON.stringify({
+      animal: "dog",
+      breeds,
+    })
+  );
+  //https://react-hooks-testing-library.com/reference/api#waitfornextupdate
   const { result, waitForNextUpdate } = renderHook(() => useBreedList("dog"));
   //waiting for update happen to mock async op
   await waitForNextUpdate();
